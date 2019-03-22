@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+CoreDataModules = {git = "https://www.github.com/AfricasVoices/CoreDataModules", ref = "a17f4c9f2ab8e2621085536157122db03abbf5e6", editable = true}
+PipelineInfrastructure = {git = "https://www.github.com/AfricasVoices/PipelineInfrastructure", ref = "2390ad8af87edca38d71ea5666a8758a0c4c124f", editable = true}
+pytz = "*"
+python-dateutil = ">=2.8.0"  # Need this minimum so that isoparse handles T24:00:00 correctly.
+google-cloud-storage = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
