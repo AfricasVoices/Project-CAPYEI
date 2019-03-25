@@ -44,7 +44,7 @@ class AutoCodeSurveys(object):
             for td in data:
                 # This test works because the only codes which have been applied at this point are TRUE_MISSING.
                 # If any other coding is done above, this test will need to change.
-                if plan.coded_field not in td:
+                if plan.raw_field in td:
                     rqa_messages.append(td)
                 else:
                     assert len(td[plan.coded_field]) == 1
