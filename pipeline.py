@@ -100,9 +100,6 @@ if __name__ == "__main__":
 
     print("Translating Rapid Pro Keys...")
     data = TranslateRapidProKeys.translate_rapid_pro_keys(user, data, pipeline_configuration, prev_coded_dir_path)
-    for v in data:
-        for value in v:
-            print(value)
     
     print("Auto Coding Messages...")
     data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
