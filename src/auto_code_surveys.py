@@ -42,8 +42,6 @@ class AutoCodeSurveys(object):
         for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
             rqa_messages = []
             for td in data:
-                # This test works because the only codes which have been applied at this point are TRUE_MISSING.
-                # If any other coding is done above, this test will need to change.
                 if plan.raw_field in td:
                     rqa_messages.append(td)
                 else:
@@ -62,4 +60,3 @@ class AutoCodeSurveys(object):
 
 
         return data
-        
