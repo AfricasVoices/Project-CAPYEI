@@ -7,17 +7,6 @@ from dateutil.parser import isoparse
 
 
 class TranslateRapidProKeys(object):
-    # TODO: Move the constants in this file to configuration json
-    SHOW_ID_MAP = {
-        "Capyei_Valuable (Value) - capyei_pp": 1,
-        "Capyei_Change (Value) - capyei_pp": 1
-    }
-
-    RAW_ID_MAP = {
-        1: "capyei_valuable_raw",
-        1: "capyei_change_raw"
-    }
-
     @classmethod
     def set_show_ids(cls, user, data, show_id_map):
         """
@@ -97,15 +86,8 @@ class TranslateRapidProKeys(object):
         TODO: Break this function such that the show remapping phase happens in one class, and the Rapid Pro remapping
               in another?
         """
-        # Set a show id field for each message, using the presence of Rapid Pro value keys in the TracedData.
-        # Show ids are necessary in order to be able to remap radio shows and key names separately (because data
-        # can't be 'deleted' from TracedData).
-        cls.set_show_ids(user, data, cls.SHOW_ID_MAP)
 
         # Remap the keys used by Rapid Pro to more usable key names that will be used by the rest of the pipeline.
         cls.remap_key_names(user, data, pipeline_configuration)
-
-        # Convert from the new show id format to the raw field format still used by the rest of the pipeline.
-        cls.set_rqa_raw_keys_from_show_ids(user, data, cls.RAW_ID_MAP)
 
         return data

@@ -102,7 +102,7 @@ if __name__ == "__main__":
     print("Translating Rapid Pro Keys...")
     data = TranslateRapidProKeys.translate_rapid_pro_keys(user, data, pipeline_configuration, prev_coded_dir_path)
     
-    print("Auto Coding Messages...")
+    print("Auto Coding Surveys...")
     data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
 
     print("Applying Manual Codes from Coda...")
