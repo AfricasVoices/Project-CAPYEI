@@ -7,17 +7,6 @@ from dateutil.parser import isoparse
 
 
 class TranslateRapidProKeys(object):
-    # TODO: Move the constants in this file to configuration json
-    SHOW_ID_MAP = {
-        "Capyei_Valuable (Value) - capyei_pp": 1,
-        "Capyei_Change (Value) - capyei_pp": 1
-    }
-
-    RAW_ID_MAP = {
-        1: "capyei_valuable_raw",
-        1: "capyei_change_raw"
-    }
-
     @classmethod
     def set_show_ids(cls, user, data, show_id_map):
         """
