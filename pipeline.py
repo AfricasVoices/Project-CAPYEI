@@ -7,7 +7,8 @@ from core_data_modules.util import PhoneNumberUuidTable, IOUtils
 from storage.google_drive import drive_client_wrapper
 
 from src.lib.pipeline_configuration import PipelineConfiguration
-from src.lib.auto_code_surveys import AutoCodeSurveys
+from src.auto_code_surveys import AutoCodeSurveys
+from src.apply_manual_codes import ApplyManualCodes
 from src.combine_raw_datasets import CombineRawDatasets
 from src.translate_rapidpro_keys import TranslateRapidProKeys
 
@@ -103,5 +104,13 @@ if __name__ == "__main__":
     
     print("Auto Coding Messages...")
     data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
+
+    print("Applying Manual Codes from Coda...")
+    data = ApplyManualCodes.apply_manual_codes(user, data, prev_coded_dir_path)
+
+    print("Writing TracedData to file...")
+    IOUtils.ensure_dirs_exist_for_file(json_output_path)
+    with open(json_output_path, "w") as f:
+        TracedDataJsonIO.export_traced_data_iterable_to_json(data, f, pretty_print=True)
 
     print("Python script complete")

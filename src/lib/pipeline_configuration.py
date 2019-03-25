@@ -11,7 +11,9 @@ def _open_scheme(filename):
         return Scheme.from_firebase_map(firebase_map)
 
 class CodeSchemes(object):
-    pass
+    VALUEABLE = _open_scheme("Valuable.json")
+    HELP = _open_scheme("Help.json")
+    CHANGE = _open_scheme("Change.json")
 
 class CodingPlan(object):
     def __init__(self, raw_field, coded_field, coda_filename, cleaner=None, code_scheme=None, time_field=None,
@@ -48,7 +50,8 @@ class PipelineConfiguration(object):
                    icr_filename="capyei_valuable.csv",
                    analysis_file_key="capyei_valuable_",
                    cleaner=None,
-                   code_scheme=None),
+                   binary_code_scheme=CodeSchemes.VALUEABLE,
+                   code_scheme=CodeSchemes.HELP),
 
         CodingPlan(raw_field="capyei_change_raw",
                    coded_field="capyei_change_coded",
@@ -57,7 +60,7 @@ class PipelineConfiguration(object):
                    icr_filename="capyei_change.csv",
                    analysis_file_key="capyei_change_",
                    cleaner=None,
-                   code_scheme=None)
+                   code_scheme=CodeSchemes.CHANGE)
     ]
 
     def __init__(self, rapid_pro_domain, rapid_pro_token_file_url, rapid_pro_key_remappings):
