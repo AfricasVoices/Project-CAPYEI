@@ -11,7 +11,7 @@ def _open_scheme(filename):
         return Scheme.from_firebase_map(firebase_map)
 
 class CodeSchemes(object):
-    VALUEABLE = _open_scheme("Valuable.json")
+    VALUABLE = _open_scheme("Valuable.json")
     CHANGE = _open_scheme("Change.json")
 
 class CodingPlan(object):
@@ -49,7 +49,7 @@ class PipelineConfiguration(object):
                    icr_filename="capyei_valuable.csv",
                    analysis_file_key="capyei_valuable_",
                    cleaner=None,
-                   code_scheme=CodeSchemes.VALUEABLE),
+                   code_scheme=CodeSchemes.VALUABLE),
 
         CodingPlan(raw_field="capyei_change_raw",
                    coded_field="capyei_change_coded",
