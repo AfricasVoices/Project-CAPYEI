@@ -12,7 +12,6 @@ def _open_scheme(filename):
 
 class CodeSchemes(object):
     VALUEABLE = _open_scheme("Valuable.json")
-    HELP = _open_scheme("Help.json")
     CHANGE = _open_scheme("Change.json")
 
 class CodingPlan(object):
