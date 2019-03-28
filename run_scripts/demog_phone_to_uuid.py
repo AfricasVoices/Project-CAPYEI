@@ -29,9 +29,10 @@ if __name__ == "__main__":
 
     with open(demog_dataset_path, "r") as f:
         traced_demog = TracedDataCSVIO.import_csv_to_traced_data_iterable(user, f)
+        traced_demog = list(traced_demog)
         for td in traced_demog:
             uuid_dict = {"avf_phone_id": phone_uuids.add_phone(td["final_phone"])}
-            td.append_data(TracedData(uuid_dict, Metadata(user, Metadata.get_call_location(), time.time())))
+            td.append_data(uuid_dict, Metadata(user, Metadata.get_call_location(), time.time()))
 
     # Write the UUIDs out to a file
     with open(phone_uuid_path, "w") as f:
