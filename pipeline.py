@@ -2,6 +2,7 @@ import argparse
 import os
 import random
 
+from core_data_modules.logging import Logger
 from core_data_modules.traced_data.io import TracedDataJsonIO
 from core_data_modules.util import PhoneNumberUuidTable, IOUtils
 from storage.google_drive import drive_client_wrapper
@@ -11,6 +12,8 @@ from src.auto_code_surveys import AutoCodeSurveys
 from src.apply_manual_codes import ApplyManualCodes
 from src.combine_raw_datasets import CombineRawDatasets
 from src.translate_rapidpro_keys import TranslateRapidProKeys
+
+log = Logger(__name__)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Runs the post-fetch phase of the CAPYEI pipeline",
@@ -42,7 +45,7 @@ if __name__ == "__main__":
     parser.add_argument("s02e01_input_path", metavar="s02e01-input-path",
                         help="Path to the episode 1 raw messages JSON file, containing a list of serialized TracedData "
                              "objects")
-     parser.add_argument("demog_input_path", metavar="demog-input-path",
+    parser.add_argument("demog_input_path", metavar="demog-input-path",
                         help="Path to demog JSON file, containing a list of serialized TracedData "
                              "objects")
     parser.add_argument("prev_coded_dir_path", metavar="prev-coded-dir-path",
@@ -106,7 +109,7 @@ if __name__ == "__main__":
 
     # Load demographics
     log.info("Loading Demographics 1/1...")
-    with open(s01_demog_input_path, "r") as f:
+    with open(demog_input_path, "r") as f:
         demographics = TracedDataJsonIO.import_json_to_traced_data_iterable(f)
     log.debug(f"Loaded {len(demographics)} contacts")
 

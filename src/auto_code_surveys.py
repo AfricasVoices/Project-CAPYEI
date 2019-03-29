@@ -14,7 +14,7 @@ from src.lib.icr_tools import ICRTools
 
 class AutoCodeSurveys(object):
     SENT_ON_KEY = "sent_on"
-    ICR_MESSAGES_COUNT = 10000
+    ICR_MESSAGES_COUNT = 200
     ICR_SEED = 0
 
     @classmethod
@@ -36,9 +36,23 @@ class AutoCodeSurveys(object):
                 TracedDataCodaV2IO.export_traced_data_iterable_to_coda_2(
                     data, plan.raw_field, plan.time_field, plan.id_field, {plan.coded_field: plan.code_scheme}, f
                 )
+
+
+        # Output messages for thematic analysis
+        IOUtils.ensure_dirs_exist(icr_output_dir)
+        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+            rqa_messages = []
+            for td in data:
+                if plan.raw_field in td:
+                    rqa_messages.append(td)
+
+            icr_output_path = path.join(icr_output_dir, plan.thematic_analysis_filename)
+            with open(icr_output_path, "w") as f:
+                TracedDataCSVIO.export_traced_data_iterable_to_csv(
+                    rqa_messages, f, headers=[plan.run_id_field, plan.raw_field]
+                )
         
         # Output messages for ICR
-        IOUtils.ensure_dirs_exist(icr_output_dir)
         for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
             rqa_messages = []
             for td in data:

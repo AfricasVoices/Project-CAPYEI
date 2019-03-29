@@ -32,7 +32,7 @@ if __name__ == "__main__":
     uuid_table_path = f"{root_data_dir}/UUIDs/phone_uuids.json"
 
     SURVEYS = [
-        "capyei_pp"
+        "capyei_pp_survey"
     ]
 
     TEST_CONTACTS_PATH = os.path.abspath("./test_contact_rapid_pro_ids.json")

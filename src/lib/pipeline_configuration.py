@@ -17,11 +17,13 @@ class CodeSchemes(object):
 class CodingPlan(object):
     def __init__(self, raw_field, coded_field, coda_filename, cleaner=None, code_scheme=None, time_field=None,
                  run_id_field=None, icr_filename=None, analysis_file_key=None, id_field=None,
-                 binary_code_scheme=None, binary_coded_field=None, binary_analysis_file_key=None):
+                 binary_code_scheme=None, binary_coded_field=None, binary_analysis_file_key=None, course_name=None,
+                 thematic_analysis_filename=None):
         self.raw_field = raw_field
         self.coded_field = coded_field
         self.coda_filename = coda_filename
         self.icr_filename = icr_filename
+        self.thematic_analysis_filename = thematic_analysis_filename
         self.cleaner = cleaner
         self.code_scheme = code_scheme
         self.time_field = time_field
@@ -30,6 +32,7 @@ class CodingPlan(object):
         self.binary_code_scheme = binary_code_scheme
         self.binary_coded_field = binary_coded_field
         self.binary_analysis_file_key = binary_analysis_file_key
+        self.course_name = course_name
 
         if id_field is None:
             id_field = "{}_id".format(self.raw_field)
@@ -49,7 +52,8 @@ class PipelineConfiguration(object):
                    icr_filename="capyei_valuable.csv",
                    analysis_file_key="capyei_valuable_",
                    cleaner=None,
-                   code_scheme=CodeSchemes.VALUABLE),
+                   code_scheme=CodeSchemes.VALUABLE,
+                   course_name="Hospitality"),
 
         CodingPlan(raw_field="capyei_change_raw",
                    coded_field="capyei_change_coded",
