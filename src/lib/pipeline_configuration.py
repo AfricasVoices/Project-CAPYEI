@@ -18,12 +18,13 @@ class CodingPlan(object):
     def __init__(self, raw_field, coded_field, coda_filename, cleaner=None, code_scheme=None, time_field=None,
                  run_id_field=None, icr_filename=None, analysis_file_key=None, id_field=None,
                  binary_code_scheme=None, binary_coded_field=None, binary_analysis_file_key=None, course_name=None,
-                 thematic_analysis_filename=None):
+                 thematic_analysis_filename=None, prev_thematic_analysis_filename=None):
         self.raw_field = raw_field
         self.coded_field = coded_field
         self.coda_filename = coda_filename
         self.icr_filename = icr_filename
         self.thematic_analysis_filename = thematic_analysis_filename
+        self.prev_thematic_analysis_filename = prev_thematic_analysis_filename
         self.cleaner = cleaner
         self.code_scheme = code_scheme
         self.time_field = time_field
@@ -50,19 +51,29 @@ class PipelineConfiguration(object):
                    time_field="capyei_valuable_time",
                    coda_filename="capyei_valuable.json",
                    icr_filename="capyei_valuable.csv",
+                   thematic_analysis_filename="capyei_valuable_thematic_new.csv",
+                   prev_thematic_analysis_filename="capyei_valuable_thematic.csv",
                    analysis_file_key="capyei_valuable_",
                    cleaner=None,
-                   code_scheme=CodeSchemes.VALUABLE,
-                   course_name="Hospitality"),
+                   code_scheme=CodeSchemes.VALUABLE),
 
         CodingPlan(raw_field="capyei_change_raw",
                    coded_field="capyei_change_coded",
                    time_field="capyei_change_time",
                    coda_filename="capyei_change.json",
                    icr_filename="capyei_change.csv",
+                   thematic_analysis_filename="capyei_change_thematic_new.csv",
+                   prev_thematic_analysis_filename="capyei_change_thematic.csv",
                    analysis_file_key="capyei_change_",
                    cleaner=None,
                    code_scheme=CodeSchemes.CHANGE)
+    ]
+
+    DEMOGS = [
+        CodingPlan(raw_field="course_name", coded_field=None, coda_filename=None),
+        CodingPlan(raw_field="Sex", coded_field=None, coda_filename=None),
+        CodingPlan(raw_field="age", coded_field=None, coda_filename=None),
+        CodingPlan(raw_field="training_center", coded_field=None, coda_filename=None),
     ]
 
     def __init__(self, rapid_pro_domain, rapid_pro_token_file_url, rapid_pro_key_remappings):

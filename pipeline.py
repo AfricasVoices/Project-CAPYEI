@@ -12,6 +12,7 @@ from src.auto_code_surveys import AutoCodeSurveys
 from src.apply_manual_codes import ApplyManualCodes
 from src.combine_raw_datasets import CombineRawDatasets
 from src.translate_rapidpro_keys import TranslateRapidProKeys
+from src.production_file import ProductionFile
 
 log = Logger(__name__)
 
@@ -94,6 +95,7 @@ if __name__ == "__main__":
     icr_output_dir = args.icr_output_dir
     prev_coded_dir_path = args.prev_coded_dir_path
     coded_dir_path = args.coded_dir_path
+    production_csv_output_path = args.production_csv_output_path
 
     message_paths = [s02e01_input_path]
 
@@ -128,7 +130,9 @@ if __name__ == "__main__":
     data = TranslateRapidProKeys.translate_rapid_pro_keys(user, data, pipeline_configuration, prev_coded_dir_path)
     
     print("Auto Coding Surveys...")
-    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
+    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path, prev_coded_dir_path)
+
+    data = ProductionFile.generate(data, production_csv_output_path)
 
     print("Applying Manual Codes from Coda...")
     data = ApplyManualCodes.apply_manual_codes(user, data, prev_coded_dir_path)

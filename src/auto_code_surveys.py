@@ -1,6 +1,7 @@
 import time
 from os import path
 import random
+import csv
 
 from core_data_modules.cleaners import Codes, PhoneCleaner
 from core_data_modules.cleaners.cleaning_utils import CleaningUtils
@@ -14,11 +15,11 @@ from src.lib.icr_tools import ICRTools
 
 class AutoCodeSurveys(object):
     SENT_ON_KEY = "sent_on"
-    ICR_MESSAGES_COUNT = 200
+    ICR_MESSAGES_COUNT = 250
     ICR_SEED = 0
 
     @classmethod
-    def auto_code_surveys(cls, user, data, icr_output_dir, coda_output_dir):
+    def auto_code_surveys(cls, user, data, icr_output_dir, coda_output_dir, prev_coded_dir):
         # Auto-code surveys
         for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
             if plan.cleaner is not None:
@@ -37,19 +38,23 @@ class AutoCodeSurveys(object):
                     data, plan.raw_field, plan.time_field, plan.id_field, {plan.coded_field: plan.code_scheme}, f
                 )
 
-
         # Output messages for thematic analysis
         IOUtils.ensure_dirs_exist(icr_output_dir)
         for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
-            rqa_messages = []
-            for td in data:
-                if plan.raw_field in td:
-                    rqa_messages.append(td)
+            prev_thematic_analysis_input_path = path.join(prev_coded_dir, plan.prev_thematic_analysis_filename)
+            with open(prev_thematic_analysis_input_path, "r") as f:
+                prev_thematic_analysis_dict = csv.DictReader(f)
+                prev_thematic_analysis_messages = [message[plan.raw_field] for message in prev_thematic_analysis_dict]
+                rqa_messages = []
+                for td in data:
+                    if plan.raw_field in td:
+                        if td[plan.raw_field] not in prev_thematic_analysis_messages:
+                            rqa_messages.append(td)
 
             icr_output_path = path.join(icr_output_dir, plan.thematic_analysis_filename)
             with open(icr_output_path, "w") as f:
                 TracedDataCSVIO.export_traced_data_iterable_to_csv(
-                    rqa_messages, f, headers=[plan.run_id_field, plan.raw_field]
+                    rqa_messages, f, headers=[plan.raw_field]
                 )
         
         # Output messages for ICR
@@ -65,7 +70,7 @@ class AutoCodeSurveys(object):
             icr_output_path = path.join(icr_output_dir, plan.icr_filename)
             with open(icr_output_path, "w") as f:
                 TracedDataCSVIO.export_traced_data_iterable_to_csv(
-                    icr_messages, f, headers=[plan.run_id_field, plan.raw_field]
+                    icr_messages, f, headers=[plan.raw_field]
                 )
 
 
