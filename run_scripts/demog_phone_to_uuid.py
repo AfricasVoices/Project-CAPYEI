@@ -5,7 +5,7 @@ import time
 
 from core_data_modules.traced_data import TracedData, Metadata
 from core_data_modules.traced_data.io import TracedDataCSVIO, TracedDataJsonIO
-from core_data_modules.util import PhoneNumberUuidTable
+from core_data_modules.util import PhoneNumberUuidTable, IOUtils
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -39,11 +39,7 @@ if __name__ == "__main__":
         phone_uuids.dump(f)
     
     # Output TracedData to JSON.
-    if os.path.dirname(json_output_path) is not "" and not os.path.exists(os.path.dirname(json_output_path)):
-        os.makedirs(os.path.dirname(json_output_path))
+    IOUtils.ensure_dirs_exist(json_output_path)
     with open(json_output_path, "w") as f:
         TracedDataJsonIO.export_traced_data_iterable_to_json(traced_demog, f, pretty_print=True)
-
-
-
 
