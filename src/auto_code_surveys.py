@@ -14,7 +14,7 @@ from src.lib.icr_tools import ICRTools
 
 class AutoCodeSurveys(object):
     SENT_ON_KEY = "sent_on"
-    ICR_MESSAGES_COUNT = 10000
+    ICR_MESSAGES_COUNT = 200
     ICR_SEED = 0
 
     @classmethod

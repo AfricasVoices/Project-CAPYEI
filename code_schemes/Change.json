@@ -1,11 +1,147 @@
 {
   "Codes": [
     {
-      "CodeID": "code-baec502746d5",
+      "CodeID": "code-0bf5e0ab0a97",
       "CodeType": "Normal",
-      "DisplayText": "Test",
+      "DisplayText": "More practical lessons",
       "NumericValue": 0,
-      "StringValue": "test",
+      "StringValue": "more_practical_lessons",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8bbdfe9a936c",
+      "CodeType": "Normal",
+      "DisplayText": "Lack of learning material/equipments",
+      "NumericValue": 1,
+      "StringValue": "lack_of_learning_materialequipments",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-172eeb799499",
+      "CodeType": "Normal",
+      "DisplayText": "Course selection",
+      "NumericValue": 2,
+      "StringValue": "course_selection",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-c079c9dcfdf9",
+      "CodeType": "Normal",
+      "DisplayText": "Duration of course",
+      "NumericValue": 3,
+      "StringValue": "duration_of_course",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-b4eb4b570fec",
+      "CodeType": "Normal",
+      "DisplayText": "Expansion of programme ",
+      "NumericValue": 4,
+      "StringValue": "expansion_of_programme_",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-0bfe06368ff2",
+      "CodeType": "Normal",
+      "DisplayText": "More courses",
+      "NumericValue": 5,
+      "StringValue": "more_courses",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-3791531cf20b",
+      "CodeType": "Normal",
+      "DisplayText": "Transportion to centres and field visits",
+      "NumericValue": 6,
+      "StringValue": "transportion_to_centres_and_field_visits",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-54edd5349804",
+      "CodeType": "Normal",
+      "DisplayText": "Provision of meals",
+      "NumericValue": 7,
+      "StringValue": "provision_of_meals",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-92b779ee32af",
+      "CodeType": "Normal",
+      "DisplayText": "Facility related changes",
+      "NumericValue": 8,
+      "StringValue": "facility_related_changes",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-214564914ffa",
+      "CodeType": "Normal",
+      "DisplayText": "Timing of classes",
+      "NumericValue": 9,
+      "StringValue": "timing_of_classes",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-605fac1d9228",
+      "CodeType": "Normal",
+      "DisplayText": "Accomodation/hostels",
+      "NumericValue": 10,
+      "StringValue": "accomodationhostels",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-a1bfeb090f56",
+      "CodeType": "Normal",
+      "DisplayText": "Facilitator related changes",
+      "NumericValue": 11,
+      "StringValue": "facilitator_related_changes",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-6acadf257e67",
+      "CodeType": "Normal",
+      "DisplayText": "Field visits",
+      "NumericValue": 12,
+      "StringValue": "field_visits",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-e0f9b62282fe",
+      "CodeType": "Normal",
+      "DisplayText": "Change facility location",
+      "NumericValue": 13,
+      "StringValue": "change_facility_location",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-2ee5baeb8d97",
+      "CodeType": "Normal",
+      "DisplayText": "Job opportunities",
+      "NumericValue": 14,
+      "StringValue": "job_opportunities",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-8c3d42117cce",
+      "CodeType": "Normal",
+      "DisplayText": "No change proposed",
+      "NumericValue": 15,
+      "StringValue": "no_change_proposed",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-dea3476d7573",
+      "CodeType": "Normal",
+      "DisplayText": "Consent Message misunderstood",
+      "NumericValue": 16,
+      "StringValue": "consent_message_misunderstood",
+      "VisibleInCoda": true
+    },
+    {
+      "CodeID": "code-7f995e26893d",
+      "CodeType": "Normal",
+      "DisplayText": "Other",
+      "NumericValue": 17,
+      "StringValue": "other",
       "VisibleInCoda": true
     },
     {
@@ -73,6 +209,6 @@
     }
   ],
   "Name": "Change",
-  "SchemeID": "Scheme-b653e646a71d",
+  "SchemeID": "Scheme-68ab370f1ec2",
   "Version": "0.0.0.1"
 }
