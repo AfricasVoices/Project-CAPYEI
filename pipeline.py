@@ -2,6 +2,7 @@ import argparse
 import os
 import random
 
+from core_data_modules.logging import Logger
 from core_data_modules.traced_data.io import TracedDataJsonIO
 from core_data_modules.util import PhoneNumberUuidTable, IOUtils
 from storage.google_drive import drive_client_wrapper
@@ -11,6 +12,9 @@ from src.auto_code_surveys import AutoCodeSurveys
 from src.apply_manual_codes import ApplyManualCodes
 from src.combine_raw_datasets import CombineRawDatasets
 from src.translate_rapidpro_keys import TranslateRapidProKeys
+from src.production_file import ProductionFile
+
+log = Logger(__name__)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Runs the post-fetch phase of the CAPYEI pipeline",
@@ -253,7 +257,7 @@ if __name__ == "__main__":
     data = TranslateRapidProKeys.translate_rapid_pro_keys(user, data, pipeline_configuration, prev_coded_dir_path)
     
     print("Auto Coding Surveys...")
-    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
+    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path, prev_coded_dir_path)
 
     data = ProductionFile.generate(data, production_csv_output_path)
 
@@ -273,7 +277,9 @@ if __name__ == "__main__":
     data = TranslateRapidProKeys.translate_rapid_pro_keys(user, data, pipeline_configuration, prev_coded_dir_path)
     
     print("Auto Coding Surveys...")
-    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path)
+    data = AutoCodeSurveys.auto_code_surveys(user, data, icr_output_dir, coded_dir_path, prev_coded_dir_path)
+
+    data = ProductionFile.generate(data, production_csv_output_path)
 
     print("Applying Manual Codes from Coda...")
     data = ApplyManualCodes.apply_manual_codes(user, data, prev_coded_dir_path)

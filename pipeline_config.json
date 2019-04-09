@@ -1,12 +1,12 @@
 {
     "RapidProDomain": "textit.in",
-    "RapidProTokenFileURL": "gs://avf-credentials/icraf-text-it-token.txt",
+    "RapidProTokenFileURL": "gs://avf-credentials/capyei-text-it-token.txt",
     "RapidProKeyRemappings": [
       {"RapidProKey": "avf_phone_id", "PipelineKey": "uid"},
-      {"RapidProKey": "Capyei_Valuable (Value) - capyei_pp", "PipelineKey": "capyei_valuable_raw"},
-      {"RapidProKey": "Capyei_Valuable (Time) - capyei_pp", "PipelineKey": "capyei_valuable_time"},
-      {"RapidProKey": "Capyei_Change (Value) - capyei_pp", "PipelineKey": "capyei_change_raw"},
-      {"RapidProKey": "Capyei_Change (Time) - capyei_pp", "PipelineKey": "capyei_change_time"}
+      {"RapidProKey": "Capyei_Valuable (Value) - capyei_pp_survey", "PipelineKey": "capyei_valuable_raw"},
+      {"RapidProKey": "Capyei_Valuable (Time) - capyei_pp_survey", "PipelineKey": "capyei_valuable_time"},
+      {"RapidProKey": "Capyei_Change (Value) - capyei_pp_survey", "PipelineKey": "capyei_change_raw"},
+      {"RapidProKey": "Capyei_Change (Time) - capyei_pp_survey", "PipelineKey": "capyei_change_time"}
     ]
 }
   
