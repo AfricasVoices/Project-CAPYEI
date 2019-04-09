@@ -33,7 +33,7 @@ if [[ $# -ne 12 ]]; then
     [--profile-cpu <profile-output-path>]
     [--drive-upload <drive-auth-file> <messages-drive-path> <individuals-drive-path> <production-drive-path>]
     <user> <google-cloud-credentials-file-path> <phone-number-uuid-table-path>
-    <s02e01-input-path>  <prev-coded-dir> <json-output-path>
+    <s02e01-input-path> <demog-input-path> <prev-coded-dir> <json-output-path>
     <icr-output-dir> <coded-output-dir> <messages-output-csv> <individuals-output-csv> <production-output-csv>"
     exit
 fi
