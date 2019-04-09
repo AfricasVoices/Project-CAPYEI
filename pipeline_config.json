@@ -6,7 +6,9 @@
       {"RapidProKey": "Capyei_Valuable (Value) - capyei_pp_survey", "PipelineKey": "capyei_valuable_raw"},
       {"RapidProKey": "Capyei_Valuable (Time) - capyei_pp_survey", "PipelineKey": "capyei_valuable_time"},
       {"RapidProKey": "Capyei_Change (Value) - capyei_pp_survey", "PipelineKey": "capyei_change_raw"},
-      {"RapidProKey": "Capyei_Change (Time) - capyei_pp_survey", "PipelineKey": "capyei_change_time"}
+      {"RapidProKey": "Capyei_Change (Time) - capyei_pp_survey", "PipelineKey": "capyei_change_time"},
+      {"RapidProKey": "Consent_Revoked_Confirm (Value) - consent_confirmation", "PipelineKey": "consent_revoked_raw"},
+      {"RapidProKey": "Consent_Revoked_Confirm (Time) - consent_confirmation", "PipelineKey": "consent_revoked_time"}
     ]
 }
   

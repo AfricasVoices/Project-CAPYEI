@@ -14,7 +14,7 @@ class ApplyManualCodes(object):
     @classmethod
     def apply_manual_codes(cls, user, data, coda_input_dir):
         # Merge manually coded radio show files into the cleaned dataset
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in PipelineConfiguration.MULTI_CODE_PLANS:
             rqa_messages = [td for td in data if plan.raw_field in td]
             coda_input_path = path.join(coda_input_dir, plan.coda_filename)
             print(coda_input_path)
@@ -39,7 +39,7 @@ class ApplyManualCodes(object):
         # Label the weeks for which there is no response as TRUE_MISSING.
         for td in data:
             missing_dict = dict()
-            for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+            for plan in PipelineConfiguration.MULTI_CODE_PLANS:
                 if plan.raw_field not in td:
                     na_label = CleaningUtils.make_label_from_cleaner_code(
                         plan.code_scheme, plan.code_scheme.get_code_with_control_code(Codes.TRUE_MISSING),
@@ -55,7 +55,9 @@ class ApplyManualCodes(object):
                         missing_dict[plan.binary_coded_field] = na_label.to_dict()
 
             td.append_data(missing_dict, Metadata(user, Metadata.get_call_location(), time.time()))
+        
 
+        """
         # Synchronise the control codes between the binary and reasons schemes:
         # Some RQA datasets have a binary scheme, which is always labelled, and a reasons scheme, which is only labelled
         # if there is an additional reason given. Importing those two schemes separately above caused the labels in
@@ -102,12 +104,28 @@ class ApplyManualCodes(object):
                                 {plan.coded_field: [nc_label.to_dict()]},
                                 Metadata(user, Metadata.get_call_location(), TimeUtils.utc_now_as_iso_string())
                             )
+        """
+
+        # Merge manually coded survey files into the cleaned dataset
+        for plan in PipelineConfiguration.SINGLE_CODE_PLANS:
+            f = None
+            try:
+                coda_input_path = path.join(coda_input_dir, plan.coda_filename)
+                if path.exists(coda_input_path):
+                    f = open(coda_input_path, "r")
+                TracedDataCodaV2IO.import_coda_2_to_traced_data_iterable(
+                    user, data, plan.id_field, {plan.coded_field: plan.code_scheme}, f)
+            finally:
+                if f is not None:
+                    f.close()
+
+
 
         # Not everyone will have answered all of the demographic flows.
         # Label demographic questions which had no responses as TRUE_MISSING.
         for td in data:
             missing_dict = dict()
-            for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+            for plan in PipelineConfiguration.SINGLE_CODE_PLANS:
                 if td.get(plan.raw_field, "") == "":
                     na_label = CleaningUtils.make_label_from_cleaner_code(
                         plan.code_scheme, plan.code_scheme.get_code_with_control_code(Codes.TRUE_MISSING),
