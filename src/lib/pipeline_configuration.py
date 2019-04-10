@@ -18,7 +18,7 @@ class CodeSchemes(object):
 class CodingPlan(object):
     def __init__(self, raw_field, coded_field, coda_filename, cleaner=None, code_scheme=None, time_field=None,
                  run_id_field=None, icr_filename=None, analysis_file_key=None, id_field=None,
-                 binary_code_scheme=None, binary_coded_field=None, binary_analysis_file_key=None, course_name=None,
+                 binary_code_scheme=None, binary_coded_field=None, binary_analysis_file_key=None,
                  thematic_analysis_filename=None, prev_thematic_analysis_filename=None):
         self.raw_field = raw_field
         self.coded_field = coded_field
@@ -34,8 +34,6 @@ class CodingPlan(object):
         self.binary_code_scheme = binary_code_scheme
         self.binary_coded_field = binary_coded_field
         self.binary_analysis_file_key = binary_analysis_file_key
-        self.course_name = course_name
-
         if id_field is None:
             id_field = "{}_id".format(self.raw_field)
         self.id_field = id_field
@@ -44,7 +42,9 @@ class PipelineConfiguration(object):
     DEV_MODE = False
     
     PROJECT_START_DATE = isoparse("2019-03-29T00:00:00+03:00")
-    PROJECT_END_DATE = isoparse("2019-03-30T24:00:00+03:00")
+    PROJECT_END_DATE = isoparse("2019-04-01T24:00:00+03:00")
+
+    """
 
     SURVEY_CODING_PLANS = [
         CodingPlan(raw_field="capyei_valuable_raw",
@@ -76,10 +76,11 @@ class PipelineConfiguration(object):
                    icr_filename="consent_revoked.csv",
                    thematic_analysis_filename="consent_revoked_thematic_new.csv",
                    prev_thematic_analysis_filename="consent_revoked_thematic.csv",
-                   analysis_file_key="consent_revoked_",
+                   analysis_file_key="consent_revoked",
                    cleaner=None,
                    code_scheme=CodeSchemes.CONSENT_REVOKED)
     ]
+    """
 
     DEMOGS = [
         CodingPlan(raw_field="course_name", coded_field=None, coda_filename=None),
@@ -88,7 +89,7 @@ class PipelineConfiguration(object):
         CodingPlan(raw_field="training_center", coded_field=None, coda_filename=None),
     ]
 
-    SINGLE_CODE_PLANS = [
+    SINGLE_CODING_PLANS = [
                     CodingPlan(raw_field="consent_revoked_raw",
                             coded_field="consent_revoked_coded",
                             time_field="consent_revoked_time",
@@ -100,7 +101,7 @@ class PipelineConfiguration(object):
                             code_scheme=CodeSchemes.CONSENT_REVOKED)
     ]
 
-    MULTI_CODE_PLANS = [
+    MULTI_CODING_PLANS = [
                     CodingPlan(raw_field="capyei_valuable_raw",
                             coded_field="capyei_valuable_coded",
                             time_field="capyei_valuable_time",
