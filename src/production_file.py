@@ -9,7 +9,10 @@ class ProductionFile(object):
         for plan in PipelineConfiguration.DEMOGS:
             if plan.raw_field not in production_keys:
                 production_keys.append(plan.raw_field)
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in PipelineConfiguration.SINGLE_CODING_PLANS:
+            if plan.raw_field not in production_keys:
+                production_keys.append(plan.raw_field)
+        for plan in PipelineConfiguration.MULTI_CODING_PLANS:
             if plan.raw_field not in production_keys:
                 production_keys.append(plan.raw_field)
 

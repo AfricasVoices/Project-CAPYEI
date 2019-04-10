@@ -44,44 +44,6 @@ class PipelineConfiguration(object):
     PROJECT_START_DATE = isoparse("2019-03-29T00:00:00+03:00")
     PROJECT_END_DATE = isoparse("2019-04-01T24:00:00+03:00")
 
-    """
-
-    SURVEY_CODING_PLANS = [
-        CodingPlan(raw_field="capyei_valuable_raw",
-                   coded_field="capyei_valuable_coded",
-                   time_field="capyei_valuable_time",
-                   coda_filename="capyei_valuable.json",
-                   icr_filename="capyei_valuable.csv",
-                   thematic_analysis_filename="capyei_valuable_thematic_new.csv",
-                   prev_thematic_analysis_filename="capyei_valuable_thematic.csv",
-                   analysis_file_key="capyei_valuable_",
-                   cleaner=None,
-                   code_scheme=CodeSchemes.VALUABLE),
-
-        CodingPlan(raw_field="capyei_change_raw",
-                   coded_field="capyei_change_coded",
-                   time_field="capyei_change_time",
-                   coda_filename="capyei_change.json",
-                   icr_filename="capyei_change.csv",
-                   thematic_analysis_filename="capyei_change_thematic_new.csv",
-                   prev_thematic_analysis_filename="capyei_change_thematic.csv",
-                   analysis_file_key="capyei_change_",
-                   cleaner=None,
-                   code_scheme=CodeSchemes.CHANGE),
-
-        CodingPlan(raw_field="consent_revoked_raw",
-                   coded_field="consent_revoked_coded",
-                   time_field="consent_revoked_time",
-                   coda_filename="consent_revoked.json",
-                   icr_filename="consent_revoked.csv",
-                   thematic_analysis_filename="consent_revoked_thematic_new.csv",
-                   prev_thematic_analysis_filename="consent_revoked_thematic.csv",
-                   analysis_file_key="consent_revoked",
-                   cleaner=None,
-                   code_scheme=CodeSchemes.CONSENT_REVOKED)
-    ]
-    """
-
     DEMOGS = [
         CodingPlan(raw_field="course_name", coded_field=None, coda_filename=None),
         CodingPlan(raw_field="Sex", coded_field=None, coda_filename=None),

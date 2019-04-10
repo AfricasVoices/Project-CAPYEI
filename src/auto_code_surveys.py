@@ -18,17 +18,21 @@ class AutoCodeSurveys(object):
     ICR_MESSAGES_COUNT = 250
     ICR_SEED = 0
 
+    CODA_CODE_PLANS = []
+    CODA_CODE_PLANS.extend(PipelineConfiguration.SINGLE_CODING_PLANS)
+    CODA_CODE_PLANS.extend(PipelineConfiguration.MULTI_CODING_PLANS)
+
     @classmethod
     def auto_code_surveys(cls, user, data, icr_output_dir, coda_output_dir, prev_coded_dir):
         # Auto-code surveys
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in cls.CODA_CODE_PLANS:
             if plan.cleaner is not None:
                 CleaningUtils.apply_cleaner_to_traced_data_iterable(user, data, plan.raw_field, plan.coded_field,
                                                                     plan.cleaner, plan.code_scheme)
 
-        # Output single-scheme answers to coda for manual verification + coding
+        # Output answers to coda for manual verification + coding
         IOUtils.ensure_dirs_exist(coda_output_dir)
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in cls.CODA_CODE_PLANS:
             
             TracedDataCodaV2IO.compute_message_ids(user, data, plan.raw_field, plan.id_field)
 
@@ -40,7 +44,7 @@ class AutoCodeSurveys(object):
            
         # Output messages for thematic analysis
         IOUtils.ensure_dirs_exist(icr_output_dir)
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in cls.CODA_CODE_PLANS:
             prev_thematic_analysis_input_path = os.path.join(prev_coded_dir, plan.prev_thematic_analysis_filename)
             if os.path.isfile(prev_thematic_analysis_input_path):
                 with open(prev_thematic_analysis_input_path, "r") as f:
@@ -64,7 +68,7 @@ class AutoCodeSurveys(object):
                 )
         
         # Output messages for ICR
-        for plan in PipelineConfiguration.SURVEY_CODING_PLANS:
+        for plan in cls.CODA_CODE_PLANS:
             rqa_messages = []
             for td in data:
                 if plan.raw_field in td:
@@ -79,5 +83,5 @@ class AutoCodeSurveys(object):
                     icr_messages, f, headers=[plan.raw_field]
                 )
 
-
         return data
+        
